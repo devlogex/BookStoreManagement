@@ -44,6 +44,8 @@ public class FManagement extends javax.swing.JFrame {
         btnSearchAuthor = new javax.swing.JButton();
         btnSearchBook = new javax.swing.JButton();
         btnImportBook = new javax.swing.JButton();
+        btnSearchCustomer = new javax.swing.JButton();
+        btnBill = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -81,6 +83,20 @@ public class FManagement extends javax.swing.JFrame {
             }
         });
 
+        btnSearchCustomer.setText("Tra cứu khách hàng");
+        btnSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchCustomerActionPerformed(evt);
+            }
+        });
+
+        btnBill.setText("Lập hóa đơn");
+        btnBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBillActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,7 +108,10 @@ public class FManagement extends javax.swing.JFrame {
                         .addComponent(btnSeachCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSearchAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSearchBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnImportBook))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSearchCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnImportBook, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(194, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,7 +125,10 @@ public class FManagement extends javax.swing.JFrame {
                 .addComponent(btnSearchBook)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnImportBook)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSearchCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(btnBill))
         );
 
         getAccessibleContext().setAccessibleName("Màn hình chính");
@@ -140,6 +162,18 @@ public class FManagement extends javax.swing.JFrame {
         FImportBook.getInstance().reload();
         FImportBook.getInstance().setVisible(true);
         FManagement.getInstance().setVisible(false);    }//GEN-LAST:event_btnImportBookActionPerformed
+
+    private void btnSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerActionPerformed
+        FCustomer.getInstance().reload();
+        FCustomer.getInstance().setVisible(true);
+        FManagement.getInstance().setVisible(false);
+    }//GEN-LAST:event_btnSearchCustomerActionPerformed
+
+    private void btnBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillActionPerformed
+        FBill.getInstance().reload();
+        FBill.getInstance().setVisible(true);
+        FManagement.getInstance().setVisible(false);
+    }//GEN-LAST:event_btnBillActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,9 +211,11 @@ public class FManagement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBill;
     private javax.swing.JButton btnImportBook;
     private javax.swing.JButton btnSeachCategory;
     private javax.swing.JButton btnSearchAuthor;
     private javax.swing.JButton btnSearchBook;
+    private javax.swing.JButton btnSearchCustomer;
     // End of variables declaration//GEN-END:variables
 }

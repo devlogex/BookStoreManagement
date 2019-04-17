@@ -266,9 +266,22 @@ BEGIN
 	declare id int;
     set id=(select max(SoPhieuNhap) from PHIEUNHAPSACH);
 	insert CT_PHIEUNHAPSACH values(id,bookID,countt,price,total);
+    update SACH set SoLuongTon=SoLuongTon+countt,DonGiaNhap=price where MaSach=bookID;
 END; $$
 DELIMITER ;
 
-call USP_AddImportBook("2019-7-04","10");
-select * from PHIEUNHAPSACH;
-insert PHIEUNHAPSACH(TongTien)values("10");
+DELIMITER $$
+CREATE PROCEDURE USP_AddCustomer(name NVARCHAR(100),phone varchar(100),email varchar(100),address nvarchar(100))
+BEGIN
+	insert KHACHHANG(TenKhachHang,DiaChi,SoDienThoai,Email,SoTienNo) 
+    values(name,address,phone,email,0);
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetCustomer()
+BEGIN
+select * from KHACHHANG;
+END; $$
+DELIMITER ;
+

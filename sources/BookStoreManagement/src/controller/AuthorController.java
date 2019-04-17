@@ -25,7 +25,7 @@ public class AuthorController {
 
     public void getAuthor(JTable table) {
         String[] head=new String[]{"STT","Mã tác giả","Tên tác giả"};
-        ArrayList list= Model.getAuthor();
+        ArrayList<Author> list= Model.getAuthor();
         Object[][] body=new Object[list.size()][3];
         for(int i=0;i<list.size();i++)
         {
@@ -47,10 +47,10 @@ public class AuthorController {
 
     public void SearchAuthor(JTable table, String text) {
         String[] head=new String[]{"STT","Mã tác giả","Tên tác giả"};
-        ArrayList list= Model.getAuthor();
+        ArrayList<Author> list= Model.getAuthor();
         for(int i=0;i<list.size();i++)
         {
-            if(!((Author)list.get(i)).name().contains(text) && !((Author)list.get(i)).id().equals(text))
+            if(!list.get(i).name().contains(text) && !list.get(i).id().equals(text))
             {
                 list.remove(i);
                 i--;

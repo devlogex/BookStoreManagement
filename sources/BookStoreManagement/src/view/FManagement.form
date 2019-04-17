@@ -40,7 +40,11 @@
                       <Component id="btnSearchAuthor" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnSearchBook" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="btnImportBook" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="btnBill" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnSearchCustomer" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnImportBook" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="194" max="32767" attributes="0"/>
           </Group>
@@ -57,7 +61,10 @@
               <Component id="btnSearchBook" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnImportBook" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="75" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnSearchCustomer" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <Component id="btnBill" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,6 +100,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImportBookActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSearchCustomer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u kh&#xe1;ch h&#xe0;ng"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchCustomerActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBill">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="L&#x1ead;p h&#xf3;a &#x111;&#x1a1;n"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBillActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

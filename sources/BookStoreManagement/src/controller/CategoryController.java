@@ -24,7 +24,7 @@ public class CategoryController {
 
     public void getCategory(JTable table) {
         String[] head=new String[]{"STT","Mã thể loại","Tên thể loại"};
-        ArrayList list= Model.getCategory();
+        ArrayList<Category> list= Model.getCategory();
         Object[][] body=new Object[list.size()][3];
         for(int i=0;i<list.size();i++)
         {
@@ -46,10 +46,10 @@ public class CategoryController {
 
     public void SearchCategory(JTable table, String text) {
         String[] head=new String[]{"STT","Mã thể loại","Tên thể loại"};
-        ArrayList list= Model.getCategory();
+        ArrayList<Category> list= Model.getCategory();
         for(int i=0;i<list.size();i++)
         {
-            if(!((Category)list.get(i)).name().contains(text) && !((Category)list.get(i)).id().equals(text))
+            if(!list.get(i).name().contains(text) && !list.get(i).id().equals(text))
             {
                 list.remove(i);
                 i--;
