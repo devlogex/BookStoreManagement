@@ -21,7 +21,13 @@ public class FConnectDatabase extends javax.swing.JFrame {
     /**
      * Creates new form FConnectDatabase
      */
-    public FConnectDatabase() {
+    private static FConnectDatabase instance=null;
+    public static FConnectDatabase getInstance(){
+        if(instance==null)
+            instance=new FConnectDatabase();
+        return instance;
+    }
+    private FConnectDatabase() {
         initComponents();
     }
 
@@ -40,7 +46,6 @@ public class FConnectDatabase extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txfUserName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txfPassword = new javax.swing.JTextField();
         ckbSaveConn = new javax.swing.JCheckBox();
         btnConnect = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -48,6 +53,7 @@ public class FConnectDatabase extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txfHost = new javax.swing.JTextField();
         txfPort = new javax.swing.JTextField();
+        txfPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Màn hình kết nối cơ sở dữ liệu");
@@ -64,16 +70,16 @@ public class FConnectDatabase extends javax.swing.JFrame {
         jLabel2.setText("Database");
 
         txfDatabase.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfDatabase.setText("BookStoreManagement");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("UserName");
 
         txfUserName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfUserName.setText("root");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Password");
-
-        txfPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         ckbSaveConn.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         ckbSaveConn.setText("Save connection");
@@ -105,6 +111,9 @@ public class FConnectDatabase extends javax.swing.JFrame {
         txfPort.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfPort.setText("3306");
 
+        txfPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfPassword.setText("tan1176129135");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,8 +132,8 @@ public class FConnectDatabase extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txfUserName)
-                                    .addComponent(txfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
+                                    .addComponent(txfUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                    .addComponent(txfPassword)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -166,8 +175,8 @@ public class FConnectDatabase extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(txfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(ckbSaveConn)
                 .addGap(18, 18, 18)
@@ -192,11 +201,14 @@ public class FConnectDatabase extends javax.swing.JFrame {
         try {
             DataAccessHelper.getInstance().getConnect();
             JOptionPane.showConfirmDialog(this, "Kết nối thành công !","Connection result",JOptionPane.WARNING_MESSAGE);
-            
             if(!ckbSaveConn.isSelected())
             {
                 txfPassword.setText("");
             }
+            
+            FLogin.getInstance().setVisible(true);
+            this.setVisible(false);
+            DataAccessHelper.getInstance().getClose();
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(this, "Kết nối thất bại !","Connection result",JOptionPane.WARNING_MESSAGE);
             DataAccessHelper.getInstance().dbPath = "";
@@ -211,8 +223,8 @@ public class FConnectDatabase extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn thoát chương trình ?","Warning", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
-            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE );
+        if(JOptionPane.showConfirmDialog(FConnectDatabase.getInstance(), "Bạn có chắc muốn thoát chương trình ?","Warning", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
+            FConnectDatabase.getInstance().setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE );
         else
             System.exit(0);
     }//GEN-LAST:event_formWindowClosing
@@ -247,7 +259,7 @@ public class FConnectDatabase extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FConnectDatabase().setVisible(true);
+                FConnectDatabase.getInstance().setVisible(true);
             }
         });
     }
@@ -264,7 +276,7 @@ public class FConnectDatabase extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txfDatabase;
     private javax.swing.JTextField txfHost;
-    private javax.swing.JTextField txfPassword;
+    private javax.swing.JPasswordField txfPassword;
     private javax.swing.JTextField txfPort;
     private javax.swing.JTextField txfUserName;
     // End of variables declaration//GEN-END:variables

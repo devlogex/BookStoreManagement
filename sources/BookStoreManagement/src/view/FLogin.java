@@ -5,16 +5,29 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+import model.Account;
+import controller.AccountController;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.WindowConstants;
 /**
  *
  * @author tnd
  */
 public class FLogin extends javax.swing.JFrame {
-
     /**
      * Creates new form FLogin
      */
-    public FLogin() {
+    private static FLogin instance=null;
+    public static FLogin getInstance(){
+        if(instance==null)
+            instance=new FLogin();
+        return instance;
+    }
+    AccountController Controller=new AccountController();
+    private FLogin() {
         initComponents();
     }
 
@@ -29,12 +42,17 @@ public class FLogin extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txfUserName = new javax.swing.JTextField();
-        txfPassword = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
+        txfPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Màn hình đăng nhập");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -42,14 +60,19 @@ public class FLogin extends javax.swing.JFrame {
 
         txfUserName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfUserName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfUserName.setText("UserName");
-
-        txfPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txfPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfPassword.setText("Password");
+        txfUserName.setText("admin");
 
         btnLogin.setText("Login");
         btnLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        txfPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txfPassword.setText("admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,14 +83,14 @@ public class FLogin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txfUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                     .addComponent(txfPassword))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -79,13 +102,48 @@ public class FLogin extends javax.swing.JFrame {
                 .addComponent(txfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(btnLogin)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        if(txfUserName.getText().equals(""))
+        {
+            JOptionPane.showConfirmDialog(this,"Bạn chưa nhập tên đăng nhập !","Warning",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(txfPassword.getText().equals(""))
+        {
+            JOptionPane.showConfirmDialog(this,"Bạn chưa nhập mật khẩu !","Warning",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String username=txfUserName.getText().toString();
+        String password =txfPassword.getText().toString();
+        try {
+            if(Controller.Login(username,password))
+            {
+                FManagement.getInstance().setAccount(Controller.getAccountByUsername(username));
+                FManagement.getInstance().setVisible(true);
+                this.setVisible(false);
+            }
+            else
+                JOptionPane.showConfirmDialog(this,"Đăng nhập thất bại!","Warning",JOptionPane.WARNING_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(FLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE );
+        FLogin.getInstance().setVisible(false);
+        FConnectDatabase.getInstance().setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -117,7 +175,7 @@ public class FLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FLogin().setVisible(true);
+                FLogin.getInstance().setVisible(true);
             }
         });
     }
@@ -125,7 +183,7 @@ public class FLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txfPassword;
+    private javax.swing.JPasswordField txfPassword;
     private javax.swing.JTextField txfUserName;
     // End of variables declaration//GEN-END:variables
 }

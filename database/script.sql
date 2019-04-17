@@ -13,36 +13,18 @@ CREATE TABLE TACGIA
 	TenTacGia NVARCHAR(100) NOT NULL
 );
 
-CREATE TABLE DAUSACH
-(
-	MaDauSach INT auto_increment PRIMARY KEY,
-	TenDauSach NVARCHAR(100) NOT NULL,
-	MaTheLoai INT NOT NULL
-);
-
-alter table DAUSACH 
-add constraint DAUSACH_THELOAISACH_FK 
-foreign key(MaTheLoai) references THELOAISACH(MaTheLoai);
-
 CREATE TABLE CT_TACGIA
 (
-	MaDauSach INT ,
+	MaSach INT ,
 	MaTacGia INT NOT NULL ,
-	CONSTRAINT PK_CTTACGIA PRIMARY KEY (MaDauSach,MaTacGia)
+	CONSTRAINT PK_CTTACGIA PRIMARY KEY (MaSach,MaTacGia)
 );
-
-alter table CT_TACGIA 
-add constraint CT_TACGIA_DAUSACH_FK 
-foreign key(MaDauSach) references DAUSACH(MaDauSach);
-
-alter table CT_TACGIA 
-add constraint CT_TACGIA_TACGIA_FK 
-foreign key(MaTacGia) references TACGIA(MaTacGia);
 
 CREATE TABLE SACH
 (
 	MaSach INT auto_increment  PRIMARY KEY,
-	MaDauSach INT NOT NULL ,
+    TenSach NVARCHAR(100),
+    MaTheLoai int not null,
 	NhaXuatBan NVARCHAR(100) NOT NULL,
 	NamXuatBan INT NOT NULL,
 	SoLuongTon INT NOT NULL DEFAULT 0,
@@ -50,8 +32,16 @@ CREATE TABLE SACH
 );
 
 alter table SACH 
-add constraint SACH_DAUSACH_FK 
-foreign key(MaDauSach) references DAUSACH(MaDauSach);
+add constraint SACH_THELOAISACH_FK 
+foreign key(MaTheLoai) references THELOAISACH(MaTheLoai);
+
+alter table CT_TACGIA 
+add constraint CT_TACGIA_DAUSACH_FK 
+foreign key(MaSach) references SACH(MaSach);
+
+alter table CT_TACGIA 
+add constraint CT_TACGIA_TACGIA_FK 
+foreign key(MaTacGia) references TACGIA(MaTacGia);
 
 CREATE TABLE PHIEUNHAPSACH
 (
@@ -169,3 +159,116 @@ CREATE TABLE NGUOIDUNG
 	MatKhau VARCHAR(100) NOT NULL DEFAULT '',
     LoaiTaiKhoan int  /* 0:staff, 1:admin */
 );
+insert into NGUOIDUNG values ("admin","admin","admin",1);
+
+DELIMITER $$
+create procedure USP_Login(userName VARCHAR(100),passWord VARCHAR(100))
+BEGIN
+select * from BookStoreManagement.NGUOIDUNG where TenDangNhap=userName and MatKhau=passWord;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+create procedure USP_GetAccountByUsername(userName VARCHAR(100))
+BEGIN
+select * from BookStoreManagement.NGUOIDUNG where TenDangNhap=userName;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetCategory()
+BEGIN
+select * from THELOAISACH;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_AddCategory(categoryName VARCHAR(100))
+BEGIN
+if((select count(*) from THELOAISACH where TenTheLoai=categoryname)=0)
+then
+    insert THELOAISACH(TenTheLoai) values(categoryName);
+    end if;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetAuthor()
+BEGIN
+select * from TACGIA;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_AddAuthor(author VARCHAR(100))
+BEGIN
+	insert TACGIA(TenTacGia) values(author);
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetAuthorByBook(bookID int)
+BEGIN
+select TACGIA.MaTacGia,TACGIA.TenTacGia from TACGIA,CT_TACGIA,SACH
+where TACGIA.MaTacGia=CT_TACGIA.MaTacGia and CT_TACGIA.MaSach=SACH.MaSach and SACH.MaSach=bookID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetCategoryByBook(bookID int)
+BEGIN
+select THELOAISACH.MaTheLoai,THELOAISACH.TenTheLoai from THELOAISACH,SACH
+where THELOAISACH.MaTheLoai=SACH.MaTheLoai and SACH.MaSach=bookID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_AddBook(name NVARCHAR(100),categoryID int, publishCompany nvarchar(200),publishYear int)
+BEGIN
+	insert SACH(TenSach,MaTheLoai,NhaXuatBan,NamXuatBan,SoLuongTon,DonGiaNhap)
+    values(name,categoryID,publishCompany,publishYear,0,0);
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_AddBookAuthor(authorID int)
+BEGIN
+	declare bookID int;
+    set bookID=(select max(MaSach) from SACH);
+	insert CT_TACGIA values(bookID,authorID);
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetCategoryByID(categoryID int)
+BEGIN
+	select* from THELOAISACH where MaTheLoai=categoryID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetBook()
+BEGIN
+	select* from SACH;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_AddImportBook(dateInput date ,money float)
+BEGIN
+	insert PHIEUNHAPSACH(NgayLap,TongTien)values(dateInput,money);
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_AddImportBookInfo(bookID int ,countt int, price float,total float)
+BEGIN
+	declare id int;
+    set id=(select max(SoPhieuNhap) from PHIEUNHAPSACH);
+	insert CT_PHIEUNHAPSACH values(id,bookID,countt,price,total);
+END; $$
+DELIMITER ;
+
+call USP_AddImportBook("2019-7-04","10");
+select * from PHIEUNHAPSACH;
+insert PHIEUNHAPSACH(TongTien)values("10");
