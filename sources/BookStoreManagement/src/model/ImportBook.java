@@ -48,6 +48,7 @@ public class ImportBook {
                 DataAccessHelper.getInstance().getClose();
                 return true;
             }
+            else
             {
                 DataAccessHelper.getInstance().getClose();
                 return false;

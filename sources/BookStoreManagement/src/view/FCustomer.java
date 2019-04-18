@@ -262,6 +262,7 @@ public class FCustomer extends javax.swing.JFrame {
         if(Controller.AddCustomer(name,phone,email,address))
         {
             JOptionPane.showConfirmDialog(FCategoryBook.getInstance(), "Thêm khách hàng thành công !","Thông báo", JOptionPane.OK_OPTION);
+            reload();
         }
         else
         {

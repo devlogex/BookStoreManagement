@@ -27,17 +27,17 @@ public class BookController {
         for(int i=0;i<list.size();i++)
         {
             body[i][0]=i;
-            body[i][1]=((Book)list.get(i)).id();
-            body[i][2]=((Book)list.get(i)).name();
-            body[i][3]=((Book)list.get(i)).category().name();
+            body[i][1]=list.get(i).id();
+            body[i][2]=list.get(i).name();
+            body[i][3]=list.get(i).category().name();
             String authors="";
-            for(int j=0;j<((Book)list.get(i)).authors().size();j++)
-                authors+=((Book)list.get(i)).authors().get(j).name() +"-";
+            for(int j=0;j<list.get(i).authors().size();j++)
+                authors+=list.get(i).authors().get(j).name() +"-";
             body[i][4]=authors;
-            body[i][5]=((Book)list.get(i)).publishCompany();
-            body[i][6]=((Book)list.get(i)).publishYear();
-            body[i][7]=((Book)list.get(i)).count();
-            body[i][8]=Math.round(((Book)list.get(i)).price()*10)/10;
+            body[i][5]=list.get(i).publishCompany();
+            body[i][6]=list.get(i).publishYear();
+            body[i][7]=list.get(i).count();
+            body[i][8]=list.get(i).price();
         }
         DefaultTableModel dtm = new DefaultTableModel(body,head){
             @Override

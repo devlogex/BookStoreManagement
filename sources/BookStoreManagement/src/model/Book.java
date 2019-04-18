@@ -61,7 +61,7 @@ public class Book {
                 String publishCompany=rs.getString("NhaXuatBan");
                 int publishYear=Integer.parseInt(rs.getString("NamXuatBan"));
                 int count=Integer.parseInt(rs.getString("SoLuongTon"));
-                float price=Float.parseFloat(rs.getString("DonGiaNhap"));
+                float price=(float)Math.round(Float.parseFloat(rs.getString("DonGiaNhap"))*10)/10;
                 Book book=new Book(id, name, authors, category, publishCompany, publishYear, count, price);
                 list.add(book);
             }

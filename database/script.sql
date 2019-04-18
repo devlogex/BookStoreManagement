@@ -285,3 +285,21 @@ select * from KHACHHANG;
 END; $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE USP_AddBill(dateInput date ,money float,moneyReceive float, moneyChange float, customerID int)
+BEGIN
+	insert HOADON(MaKhachHang,NgayLap,TongTien,ThanhToan,ConLai)
+    values(customerID,dateInput,money,moneyReceive,moneyChange);
+    update KHACHHANG set SoTienNo=SoTienNo+moneyChange where MaKhachHang=customerID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_AddBillInfo(bookID int ,countt int, price float,total float)
+BEGIN
+	declare id int;
+    set id=(select max(SoHoaDon) from HOADON);
+	insert CT_HOADON values(id,bookID,countt,price,total);
+    update SACH set SoLuongTon=SoLuongTon-countt where MaSach=bookID;
+END; $$
+DELIMITER ;

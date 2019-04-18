@@ -50,6 +50,7 @@ public class Customer {
                 DataAccessHelper.getInstance().getClose();
                 return true;
             }
+            else
             {
                 DataAccessHelper.getInstance().getClose();
                 return false;
