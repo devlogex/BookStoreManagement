@@ -137,17 +137,6 @@ alter table BAOCAOTON
 add constraint BAOCAOTON_SACH_FK 
 foreign key(MaSach) references SACH(MaSach);
 
-CREATE TABLE BAOCAOCONGNO
-(
-	Thang INT NOT NULL,
-	Nam INT NOT NULL,
-	MaKhachHang INT NOT NULL ,
-	NoDau FLOAT NOT NULL DEFAULT 0,
-	PhatSinh FLOAT NOT NULL DEFAULT 0,
-	NoCuoi FLOAT NOT NULL DEFAULT 0,
-	CONSTRAINT PK_CTBAOCAONO PRIMARY KEY (Thang,Nam,MaKhachHang)
-);
-
 alter table BAOCAOCONGNO 
 add constraint BAOCAOCONGNO_KHACHHANG_FK 
 foreign key(MaKhachHang) references KHACHHANG(MaKhachHang);
