@@ -137,9 +137,7 @@ alter table BAOCAOTON
 add constraint BAOCAOTON_SACH_FK 
 foreign key(MaSach) references SACH(MaSach);
 
-alter table BAOCAOCONGNO 
-add constraint BAOCAOCONGNO_KHACHHANG_FK 
-foreign key(MaKhachHang) references KHACHHANG(MaKhachHang);
+
 
 CREATE TABLE NGUOIDUNG
 (
@@ -292,3 +290,4 @@ BEGIN
     update SACH set SoLuongTon=SoLuongTon-countt where MaSach=bookID;
 END; $$
 DELIMITER ;
+
