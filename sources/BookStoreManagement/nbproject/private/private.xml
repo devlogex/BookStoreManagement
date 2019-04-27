@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/tan/Projects/BookStoreManagement/sources/BookStoreManagement/src/view/FConnectDatabase.java</file>
+            <file>file:/E:/Github%20Project/BookStoreManagement/sources/BookStoreManagement/src/model/Category.java</file>
+            <file>file:/E:/Github%20Project/BookStoreManagement/sources/BookStoreManagement/src/controller/BillController.java</file>
+            <file>file:/E:/Github%20Project/BookStoreManagement/sources/BookStoreManagement/src/model/ReportIncome.java</file>
+            <file>file:/E:/Github%20Project/BookStoreManagement/sources/BookStoreManagement/src/model/Bill.java</file>
+            <file>file:/E:/Github%20Project/BookStoreManagement/sources/BookStoreManagement/src/controller/ReportIncomeController.java</file>
+            <file>file:/E:/Github%20Project/BookStoreManagement/sources/BookStoreManagement/src/controller/BookController.java</file>
+            <file>file:/E:/Github%20Project/BookStoreManagement/sources/BookStoreManagement/src/view/FReportIncome.java</file>
+            <file>file:/E:/Github%20Project/BookStoreManagement/sources/BookStoreManagement/src/model/Book.java</file>
         </group>
     </open-files>
 </project-private>

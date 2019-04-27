@@ -46,6 +46,8 @@ public class FManagement extends javax.swing.JFrame {
         btnImportBook = new javax.swing.JButton();
         btnSearchCustomer = new javax.swing.JButton();
         btnBill = new javax.swing.JButton();
+        btnReportAmount = new javax.swing.JButton();
+        btnReportIncome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -97,6 +99,20 @@ public class FManagement extends javax.swing.JFrame {
             }
         });
 
+        btnReportAmount.setText("Báo cáo tồn");
+        btnReportAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportAmountActionPerformed(evt);
+            }
+        });
+
+        btnReportIncome.setText("Báo cáo doanh thu");
+        btnReportIncome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportIncomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,23 +120,32 @@ public class FManagement extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnSeachCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSearchAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSearchBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSeachCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSearchAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSearchBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnReportAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnReportIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSearchCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnImportBook, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnSeachCategory)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSeachCategory)
+                    .addComponent(btnReportAmount))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearchAuthor)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearchAuthor)
+                    .addComponent(btnReportIncome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearchBook)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -175,6 +200,19 @@ public class FManagement extends javax.swing.JFrame {
         FManagement.getInstance().setVisible(false);
     }//GEN-LAST:event_btnBillActionPerformed
 
+    private void btnReportAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportAmountActionPerformed
+        //FReportAmount.getInstance().reload();
+        FReportAmount.getInstance().setVisible(true);
+        FManagement.getInstance().setVisible(false);
+    }//GEN-LAST:event_btnReportAmountActionPerformed
+
+    private void btnReportIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportIncomeActionPerformed
+        // TODO add your handling code here:
+        FReportIncome.getInstance().reload();
+        FReportIncome.getInstance().setVisible(true);
+        FManagement.getInstance().setVisible(false);
+    }//GEN-LAST:event_btnReportIncomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,6 +251,8 @@ public class FManagement extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBill;
     private javax.swing.JButton btnImportBook;
+    private javax.swing.JButton btnReportAmount;
+    private javax.swing.JButton btnReportIncome;
     private javax.swing.JButton btnSeachCategory;
     private javax.swing.JButton btnSearchAuthor;
     private javax.swing.JButton btnSearchBook;
