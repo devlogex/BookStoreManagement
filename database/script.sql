@@ -46,7 +46,7 @@ foreign key(MaTacGia) references TACGIA(MaTacGia);
 CREATE TABLE PHIEUNHAPSACH
 (
 	SoPhieuNhap INT auto_increment PRIMARY KEY,
-	NgayLap DATE NOT NULL DEFAULT NOW(),
+	NgayLap DATE NOT NULL,
 	TongTien FLOAT DEFAULT 0
 );
 
@@ -82,7 +82,7 @@ CREATE TABLE HOADON
 (
 	SoHoaDon INT auto_increment PRIMARY KEY,
 	MaKhachHang INT NOT NULL ,
-	NgayLap DATE NOT NULL DEFAULT NOW(),
+	NgayLap DATE NOT NULL,
 	TongTien FLOAT NOT NULL DEFAULT 0,
 	ThanhToan float NOT NULL DEFAULT 0,
 	ConLai FLOAT NOT NULL DEFAULT 0
@@ -114,7 +114,7 @@ CREATE TABLE PHIEUTHUTIEN
 (
 	SoPhieuThu INT auto_increment PRIMARY KEY,
 	MaKhachHang INT NOT NULL ,
-	NgayLap DATE NOT NULL DEFAULT NOW(),
+	NgayLap DATE NOT NULL,
 	SoTienThu FLOAT NOT NULL DEFAULT 0
 );
 
@@ -137,20 +137,7 @@ alter table BAOCAOTON
 add constraint BAOCAOTON_SACH_FK 
 foreign key(MaSach) references SACH(MaSach);
 
-CREATE TABLE BAOCAOCONGNO
-(
-	Thang INT NOT NULL,
-	Nam INT NOT NULL,
-	MaKhachHang INT NOT NULL ,
-	NoDau FLOAT NOT NULL DEFAULT 0,
-	PhatSinh FLOAT NOT NULL DEFAULT 0,
-	NoCuoi FLOAT NOT NULL DEFAULT 0,
-	CONSTRAINT PK_CTBAOCAONO PRIMARY KEY (Thang,Nam,MaKhachHang)
-);
 
-alter table BAOCAOCONGNO 
-add constraint BAOCAOCONGNO_KHACHHANG_FK 
-foreign key(MaKhachHang) references KHACHHANG(MaKhachHang);
 
 CREATE TABLE NGUOIDUNG
 (
@@ -303,3 +290,11 @@ BEGIN
     update SACH set SoLuongTon=SoLuongTon-countt where MaSach=bookID;
 END; $$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetIncomeByDate(ngaylap Date)
+BEGIN
+	select TongTien from HOADON where NgayLap=ngaylap;
+END; $$
+DELIMITER ;
+

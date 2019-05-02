@@ -6,12 +6,13 @@
 package view;
 
 import javax.swing.WindowConstants;
+import controller.ReportAmountController;
 /**
  *
  * @author Corazon
  */
 public class FReportAmount extends javax.swing.JFrame {
-
+    ReportAmountController Controller = new ReportAmountController(); 
     /**
      * Creates new form FReportAmount
      */
@@ -36,11 +37,12 @@ public class FReportAmount extends javax.swing.JFrame {
 
         exitBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableAmount = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtMonth = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtYear = new javax.swing.JTextField();
+        showBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -56,25 +58,31 @@ public class FReportAmount extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableAmount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tháng", "Năm", "Mã sách", "Tồn đầu", "Phát sinh", "Tồn cuối"
+                "Mã sách", "Tên sách", "Tồn đầu", "Phát sinh", "Tồn cuối"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-        }
+        jScrollPane1.setViewportView(tableAmount);
 
         jLabel1.setText("Tháng");
 
         jLabel2.setText("Năm");
+
+        showBtn.setText("Xem");
+        showBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,10 +91,12 @@ public class FReportAmount extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 439, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(showBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -110,7 +120,9 @@ public class FReportAmount extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(exitBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exitBtn)
+                    .addComponent(showBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -129,6 +141,13 @@ public class FReportAmount extends javax.swing.JFrame {
         FReportAmount.getInstance().setVisible(false);
         FLogin.getInstance().setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void showBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBtnActionPerformed
+        // TODO add your handling code here:
+        int thang=Integer.parseInt(txtMonth.getText());
+        int nam=Integer.parseInt(txtYear.getText());
+        loadTable(thang,nam);
+    }//GEN-LAST:event_showBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,13 +187,18 @@ public class FReportAmount extends javax.swing.JFrame {
     void reload() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    void loadTable(int thang, int nam) {
+        Controller.getReportTable(tableAmount,thang,nam);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton showBtn;
+    private javax.swing.JTable tableAmount;
     private javax.swing.JTextField txtMonth;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables

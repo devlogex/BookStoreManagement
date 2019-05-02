@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import javax.swing.WindowConstants;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import controller.ReportIncomeController;
 
@@ -16,7 +18,7 @@ import controller.ReportIncomeController;
  * @author Corazon
  */
 public class FReportIncome extends javax.swing.JFrame {
-    ReportIncomeController controller = new ReportIncomeController();
+    ReportIncomeController Controller = new ReportIncomeController();
     /**
      * Creates new form FReportIncome
      */
@@ -31,6 +33,7 @@ public class FReportIncome extends javax.swing.JFrame {
     
     private FReportIncome() {
         initComponents();
+        reload();
     }
 
     /**
@@ -136,14 +139,14 @@ public class FReportIncome extends javax.swing.JFrame {
 
     private void showBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBtnActionPerformed
         // TODO add your handling code here:=
-        String date = txtDate.getName();
-        
+        String date = txtDate.getText();
+
         try {
-            txtIncome.setText(String.valueOf(controller.GetIncome(new SimpleDateFormat("yyyy/MM/dd").parse(date))));
+            txtIncome.setText(String.valueOf(Controller.GetIncome(new SimpleDateFormat("dd/MM/yyyy").parse(date))));
         }
         catch (ParseException ex)
         {
-            JOptionPane.showConfirmDialog(FCategoryBook.getInstance(), "Tháng này không có doanh thu !","Thông báo", JOptionPane.OK_OPTION);
+            Logger.getLogger(FReportIncome.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_showBtnActionPerformed
 

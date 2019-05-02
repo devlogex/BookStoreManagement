@@ -6,6 +6,7 @@
 package model;
 import java.util.Date;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.sql.Statement;
 /**
  *
@@ -16,7 +17,8 @@ public class ReportIncome {
     
     public ReportIncome(){};
     public float getIncome(Date ngaylap) {
-        String SQL="call USP_GetIncomeByDate(ngaylap)";
+        SimpleDateFormat df=new SimpleDateFormat("yyyy/MM/dd");
+        String SQL="call USP_GetIncomeByDate(\"" + df.format(ngaylap) + "\")";
         float income = 0;
         try{
             DataAccessHelper.getInstance().getConnect();
@@ -24,7 +26,7 @@ public class ReportIncome {
             ResultSet rs=statement.executeQuery(SQL);
             while(rs.next())
             {
-                income += rs.getFloat("TongTien");
+                income += Float.parseFloat(rs.getString("TongTien"));
             }
             DataAccessHelper.getInstance().getClose();
         } catch (Exception e) {}
