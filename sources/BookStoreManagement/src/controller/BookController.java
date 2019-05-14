@@ -20,8 +20,8 @@ import model.Category;
 public class BookController {
     Book Model=new Book();
 
-    public void getBook(JTable table) {
-        String[] head=new String[]{"STT","Mã sách","Tên sách","Thể loại","Tác giả","Nhà xuất bản","Năm xuất bản","Số lượng tồn","Đơn giá nhập"};
+    public void loadTable(JTable table) {
+        String[] head=new String[]{"STT","Mã sách","Tên sách","Thể loại","Tác giả","Nhà xuất bản","Năm xuất bản"/*,"Số lượng tồn","Đơn giá nhập"*/};
         ArrayList<Book> list= Model.getBook();
         Object[][] body=new Object[list.size()][9];
         for(int i=0;i<list.size();i++)
@@ -36,8 +36,8 @@ public class BookController {
             body[i][4]=authors;
             body[i][5]=list.get(i).publishCompany();
             body[i][6]=list.get(i).publishYear();
-            body[i][7]=list.get(i).count();
-            body[i][8]=list.get(i).price();
+//            body[i][7]=list.get(i).count();
+//            body[i][8]=list.get(i).price();
         }
         DefaultTableModel dtm = new DefaultTableModel(body,head){
             @Override
@@ -53,8 +53,8 @@ public class BookController {
         table.getColumnModel().getColumn(4).setPreferredWidth(200);
         table.getColumnModel().getColumn(5).setPreferredWidth(200);
         table.getColumnModel().getColumn(6).setPreferredWidth(220);
-        table.getColumnModel().getColumn(7).setPreferredWidth(200);
-        table.getColumnModel().getColumn(8).setPreferredWidth(200);
+//        table.getColumnModel().getColumn(7).setPreferredWidth(200);
+//        table.getColumnModel().getColumn(8).setPreferredWidth(200);
     }
 
     public void loadCBCategory(JComboBox<String> cbCategory) {
