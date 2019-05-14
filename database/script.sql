@@ -36,7 +36,7 @@ add constraint SACH_THELOAISACH_FK
 foreign key(MaTheLoai) references THELOAISACH(MaTheLoai);
 
 alter table CT_TACGIA 
-add constraint CT_TACGIA_DAUSACH_FK 
+add constraint CT_TACGIA_SACH_FK 
 foreign key(MaSach) references SACH(MaSach);
 
 alter table CT_TACGIA 
@@ -110,18 +110,6 @@ alter table CT_HOADON
 add constraint CT_HOADON_SACH_FK 
 foreign key(MaSach) references SACH(MaSach);
 
-CREATE TABLE PHIEUTHUTIEN
-(
-	SoPhieuThu INT auto_increment PRIMARY KEY,
-	MaKhachHang INT NOT NULL ,
-	NgayLap DATE NOT NULL DEFAULT NOW(),
-	SoTienThu FLOAT NOT NULL DEFAULT 0
-);
-
-alter table PHIEUTHUTIEN 
-add constraint PHIEUTHUTIEN_KHACHHANG_FK 
-foreign key(MaKhachHang) references KHACHHANG(MaKhachHang);
-
 CREATE TABLE BAOCAOTON
 (
 	Thang INT NOT NULL ,
@@ -137,7 +125,18 @@ alter table BAOCAOTON
 add constraint BAOCAOTON_SACH_FK 
 foreign key(MaSach) references SACH(MaSach);
 
-
+CREATE TABLE BAOCAODOANHTHU
+(
+	Thang INT NOT NULL ,
+	Nam INT NOT NULL  ,
+    MaSach INT NOT NULL,
+    SoLuongBan	INT,
+    TongTien FLOAT,
+    CONSTRAINT PK_ReportSale PRIMARY KEY(Thang, Nam, MaSach)
+);
+alter table BAOCAODOANHTHU 
+add constraint BAOCAODOANHTHU_SACH_FK 
+foreign key(MaSach) references SACH(MaSach);
 
 CREATE TABLE NGUOIDUNG
 (
