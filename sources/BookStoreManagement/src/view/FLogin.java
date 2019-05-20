@@ -129,7 +129,7 @@ public class FLogin extends javax.swing.JFrame {
             if(Controller.Login(username,password))
             {
                 FManagement.getInstance().setAccount(Controller.getAccountByUsername(username));
-                FManagement.getInstance().setVisible(true);
+                FManagement.getInstance().addFormToQueue(FManagement.getInstance());
                 this.setVisible(false);
             }
             else
@@ -186,4 +186,5 @@ public class FLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txfPassword;
     private javax.swing.JTextField txfUserName;
     // End of variables declaration//GEN-END:variables
+
 }

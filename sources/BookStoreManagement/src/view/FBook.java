@@ -6,13 +6,14 @@
 package view;
 
 import controller.BookController;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author tnd
  */
-public class FBook extends javax.swing.JFrame {
+public class FBook extends MyFrame {
     BookController Controller=new BookController();
     /**
      * Creates new form FBook
@@ -25,15 +26,17 @@ public class FBook extends javax.swing.JFrame {
     }
     private FBook() {
         initComponents();
-        loadTable();
         loadCBCategory();
         loadCBAuthor();
+        loadTable();
     }
     
+    @Override
     public void reload(){
         loadCBCategory();
         loadCBAuthor();
         loadTable();
+        
     }
 
     /**
@@ -255,8 +258,8 @@ public class FBook extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        FManagement.getInstance().setVisible(true);
-        FBook.getInstance().setVisible(false);
+        FManagement.getInstance().removeFormInQueue(this);
+        
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void cbAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAuthorActionPerformed
@@ -283,6 +286,7 @@ public class FBook extends javax.swing.JFrame {
             txfAuthor.setText("");
             txfPublishCompany.setText("");
             txfPublishYear.setText("");
+            
             loadTable();
         }
         else
@@ -327,10 +331,8 @@ public class FBook extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FBook.getInstance().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            FBook.getInstance().setVisible(true);
         });
     }
 
@@ -359,6 +361,7 @@ public class FBook extends javax.swing.JFrame {
 
     private void loadTable() {
         Controller.loadTable(tableBook);
+        
     }
 
     private void loadCBCategory() {
@@ -370,6 +373,32 @@ public class FBook extends javax.swing.JFrame {
         Controller.loadCBAuthor(cbAuthor);
         cbAuthor.setSelectedIndex(-1);
         txfAuthor.setText("");
+    }
+    @Override
+    public void releaseAction(){
+        cbCategory.removeActionListener(cbCategory.getActionListeners()[0]);
+        cbAuthor.removeActionListener(cbAuthor.getActionListeners()[0]);
+    }
+    @Override
+    public void addAction(){
+        cbCategory.addActionListener ((ActionEvent e) -> {
+            if(cbCategory.getSelectedItem().toString().equals("Thêm..."))
+            {
+                FManagement.getInstance().addFormToQueue(FCategoryBook.getInstance());
+            }
+        });
+        cbAuthor.addActionListener ((ActionEvent e) -> {
+            if(cbAuthor.getSelectedItem().toString().equals("Thêm..."))
+            {
+                FManagement.getInstance().addFormToQueue(FAuthor.getInstance());
+            }
+        });
+    }
+
+    @Override
+    public void update() {
+        loadCBCategory();
+        loadCBAuthor();
     }
 }
 

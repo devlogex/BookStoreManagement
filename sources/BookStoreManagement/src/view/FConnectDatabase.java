@@ -112,6 +112,7 @@ public class FConnectDatabase extends javax.swing.JFrame {
         txfPort.setText("3306");
 
         txfPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfPassword.setText("123456");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -279,4 +280,5 @@ public class FConnectDatabase extends javax.swing.JFrame {
     private javax.swing.JTextField txfPort;
     private javax.swing.JTextField txfUserName;
     // End of variables declaration//GEN-END:variables
+
 }

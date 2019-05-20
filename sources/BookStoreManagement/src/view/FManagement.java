@@ -6,22 +6,27 @@
 package view;
 import model.Account;
 import controller.AccountController;
+import java.util.ArrayList;
 import javax.swing.WindowConstants;
 /**
  *
  * @author tnd
  */
-public class FManagement extends javax.swing.JFrame {
+public class FManagement extends MyFrame {
 
     /**
      * Creates new form FManagement
      */
     public Account account;
+    public ArrayList<MyFrame> queueForm=null;
     
     private static FManagement instance;
     public static FManagement getInstance(){
         if(instance==null)
+        {
             instance=new FManagement();
+            instance.queueForm=new ArrayList<>();
+        }
         return instance;
     }
     private FManagement() {
@@ -171,43 +176,34 @@ public class FManagement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSeachCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeachCategoryActionPerformed
-        FCategoryBook.getInstance().setVisible(true);
-        FManagement.getInstance().setVisible(false);
+        addFormToQueue(FCategoryBook.getInstance());
     }//GEN-LAST:event_btnSeachCategoryActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE );
-        FManagement.getInstance().setVisible(false);
+        FManagement.getInstance().removeFormInQueue(FManagement.getInstance());
         FLogin.getInstance().setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void btnSearchAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAuthorActionPerformed
-        FAuthor.getInstance().setVisible(true);
-        FManagement.getInstance().setVisible(false);
+        addFormToQueue(FAuthor.getInstance());
     }//GEN-LAST:event_btnSearchAuthorActionPerformed
 
     private void btnSearchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchBookActionPerformed
-        FBook.getInstance().reload();
-        FBook.getInstance().setVisible(true);
-        FManagement.getInstance().setVisible(false);
+        addFormToQueue(FBook.getInstance());
     }//GEN-LAST:event_btnSearchBookActionPerformed
 
-    private void btnImportBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportBookActionPerformed
-        FImportBook.getInstance().reload();
-        FImportBook.getInstance().setVisible(true);
-        FManagement.getInstance().setVisible(false);    }//GEN-LAST:event_btnImportBookActionPerformed
-
     private void btnSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerActionPerformed
-        FCustomer.getInstance().reload();
-        FCustomer.getInstance().setVisible(true);
-        FManagement.getInstance().setVisible(false);
+        addFormToQueue(FCustomer.getInstance());
     }//GEN-LAST:event_btnSearchCustomerActionPerformed
 
     private void btnBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillActionPerformed
-        FBill.getInstance().reload();
-        FBill.getInstance().setVisible(true);
-        FManagement.getInstance().setVisible(false);
+        addFormToQueue(FBill.getInstance());
     }//GEN-LAST:event_btnBillActionPerformed
+
+    private void btnImportBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportBookActionPerformed
+        addFormToQueue(FImportBook.getInstance());
+    }//GEN-LAST:event_btnImportBookActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,10 +233,8 @@ public class FManagement extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FManagement.getInstance().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            FManagement.getInstance().setVisible(true);
         });
     }
 
@@ -255,4 +249,46 @@ public class FManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    public void addFormToQueue(MyFrame f){
+        f.reload();
+        f.addAction();
+        f.setVisible(true);
+        if(queueForm.size()>0)
+            queueForm.get(queueForm.size()-1).setVisible(false);
+        queueForm.add(f);
+    }
+    
+    public void removeFormInQueue(MyFrame f){
+        f.releaseAction();
+        f.setVisible(false);
+        queueForm.remove(f);
+        if(queueForm.size()>0)
+        {
+            queueForm.get(queueForm.size()-1).releaseAction();
+            queueForm.get(queueForm.size()-1).update();
+            queueForm.get(queueForm.size()-1).addAction();
+            queueForm.get(queueForm.size()-1).setVisible(true);
+        }
+    }
+
+    @Override
+    public void reload() {
+
+    }
+
+    @Override
+    public void releaseAction() {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void addAction() {
+
+    }
 }

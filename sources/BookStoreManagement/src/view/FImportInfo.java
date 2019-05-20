@@ -9,7 +9,7 @@ package view;
  *
  * @author tnd
  */
-public class FImportInfo extends javax.swing.JFrame {
+public class FImportInfo extends MyFrame {
 
     /**
      * Creates new form FImportInfo
@@ -167,4 +167,24 @@ public class FImportInfo extends javax.swing.JFrame {
     private java.awt.TextField textField1;
     private java.awt.TextField textField2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void reload() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void releaseAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

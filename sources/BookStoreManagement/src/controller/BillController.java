@@ -29,6 +29,7 @@ public class BillController {
         {
             cbCustomer.addItem(list.get(i).name()+":"+list.get(i).id());
         }
+        cbCustomer.addItem("Thêm...");
     }
 
     public void loadBook(JTable table) {

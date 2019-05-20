@@ -9,7 +9,7 @@ package view;
  *
  * @author tnd
  */
-public class FCustomerInfo extends javax.swing.JFrame {
+public class FCustomerInfo extends MyFrame {
 
     /**
      * Creates new form FCustomerInfo
@@ -76,6 +76,26 @@ public class FCustomerInfo extends javax.swing.JFrame {
                 new FCustomerInfo().setVisible(true);
             }
         });
+    }
+
+    @Override
+    public void reload() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void releaseAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

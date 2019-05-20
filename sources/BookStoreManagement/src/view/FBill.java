@@ -6,6 +6,7 @@
 package view;
 
 import controller.BillController;
+import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tnd
  */
-public class FBill extends javax.swing.JFrame {
+public class FBill extends MyFrame {
     BillController Controller=new BillController();
     /**
      * Creates new form FBill
@@ -372,8 +373,7 @@ public class FBill extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        FManagement.getInstance().setVisible(true);
-        FBill.getInstance().setVisible(false);
+        FManagement.getInstance().removeFormInQueue(this);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -574,6 +574,7 @@ public class FBill extends javax.swing.JFrame {
     private javax.swing.JTextField txfValue;
     // End of variables declaration//GEN-END:variables
 
+    @Override
     public void reload() {
         loadCustomer();
         loadDate();
@@ -606,6 +607,7 @@ public class FBill extends javax.swing.JFrame {
 
     private void loadCustomer() {
         Controller.loadCustomer(cbCustomer);
+        cbCustomer.setSelectedIndex(-1);
     }
         private void loadDate() {
         SimpleDateFormat df=new SimpleDateFormat("dd/MM/yyyy");
@@ -628,5 +630,25 @@ public class FBill extends javax.swing.JFrame {
 
     private void loadBook() {
         Controller.loadBook(tableBook);
+    }
+
+    @Override
+    public void releaseAction() {
+        cbCustomer.removeActionListener(cbCustomer.getActionListeners()[0]);
+    }
+
+    @Override
+    public void update() {
+        loadCustomer();
+    }
+
+    @Override
+    public void addAction() {
+        cbCustomer.addActionListener ((ActionEvent e) -> {
+            if(cbCustomer.getSelectedItem().toString().equals("Thêm..."))
+            {
+                FManagement.getInstance().addFormToQueue(FCustomer.getInstance());
+            }
+        });
     }
 }

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author tnd
  */
-public class FCustomer extends javax.swing.JFrame {
+public class FCustomer extends MyFrame {
     CustomerController Controller=new CustomerController();
     /**
      * Creates new form FCustomer
@@ -81,7 +81,7 @@ public class FCustomer extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Thêm khách hàng");
+        jLabel2.setText("Thông tin khách hàng");
 
         jLabel4.setText("Họ tên");
 
@@ -250,8 +250,7 @@ public class FCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        FManagement.getInstance().setVisible(true);
-        FCustomer.getInstance().setVisible(false);
+        FManagement.getInstance().removeFormInQueue(this);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -332,7 +331,28 @@ public class FCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField txfSearch;
     // End of variables declaration//GEN-END:variables
 
+    @Override
     public void reload() {
         Controller.loadCustomer(tableCustomer);
+        txfSearch.setText("");
+        txfAddress.setText("");
+        txfEmail.setText("");
+        txfName.setText("");
+        txfPhone.setText("");
+    }
+
+    @Override
+    public void releaseAction() {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void addAction() {
+
     }
 }

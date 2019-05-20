@@ -9,7 +9,7 @@ package view;
  *
  * @author tnd
  */
-public class FBillInfo extends javax.swing.JFrame {
+public class FBillInfo extends MyFrame {
 
     /**
      * Creates new form FBillInfo
@@ -147,4 +147,24 @@ public class FBillInfo extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void reload() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void releaseAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

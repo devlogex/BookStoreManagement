@@ -5,18 +5,13 @@
  */
 package view;
 import controller.CategoryController;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.WindowConstants;
 
 /**
  *
  * @author tnd
  */
-public class FCategoryBook extends javax.swing.JFrame {
+public class FCategoryBook extends MyFrame {
     CategoryController Controller=new CategoryController();
     /**
      * Creates new form FCategoryBook
@@ -194,8 +189,7 @@ public class FCategoryBook extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        FManagement.getInstance().setVisible(true);
-        FCategoryBook.getInstance().setVisible(false);
+        FManagement.getInstance().removeFormInQueue(this);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCategoryActionPerformed
@@ -204,12 +198,14 @@ public class FCategoryBook extends javax.swing.JFrame {
         {
             JOptionPane.showConfirmDialog(FCategoryBook.getInstance(), "Thêm thể loại sách thành công !","Thông báo", JOptionPane.OK_OPTION);
             txfAddCategory.setText("");
+            txfSearch.setText("");
             loadTable();
         }
         else
         {
             JOptionPane.showConfirmDialog(FCategoryBook.getInstance(), "Thêm thể loại sách thất bại !","Thông báo", JOptionPane.OK_OPTION);
             txfAddCategory.setText("");
+            txfSearch.setText("");
         }
     }//GEN-LAST:event_btnAddCategoryActionPerformed
 
@@ -269,5 +265,25 @@ public class FCategoryBook extends javax.swing.JFrame {
 
     private void loadTable() {
         Controller.getCategory(tableCategory);
+    }
+
+    @Override
+    public void reload() {
+
+    }
+
+    @Override
+    public void releaseAction() {
+        
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void addAction() {
+
     }
 }

@@ -64,6 +64,7 @@ public class BookController {
         {
             cbCategory.addItem(list.get(i).name()+":"+list.get(i).id());
         }
+        cbCategory.addItem("Thêm...");
     }
 
     public void loadCBAuthor(JComboBox<String> cbAuthor) {
@@ -73,6 +74,7 @@ public class BookController {
         {
             cbAuthor.addItem(list.get(i).name()+":"+list.get(i).id());
         }
+        cbAuthor.addItem("Thêm...");
     }
 
     public boolean AddBook(String name, String category, String authors, String publishCompany, int publishYear) {

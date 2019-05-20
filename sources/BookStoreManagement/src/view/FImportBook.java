@@ -6,6 +6,7 @@
 package view;
 
 import controller.ImportBookController;
+import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tnd
  */
-public class FImportBook extends javax.swing.JFrame {
+public class FImportBook extends MyFrame {
     ImportBookController Controller=new ImportBookController();
     /**
      * Creates new form FImportBook
@@ -379,8 +380,7 @@ public class FImportBook extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        FManagement.getInstance().setVisible(true);
-        FImportBook.getInstance().setVisible(false);
+        FManagement.getInstance().removeFormInQueue(this);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
@@ -473,10 +473,8 @@ public class FImportBook extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FImportBook.getInstance().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            FImportBook.getInstance().setVisible(true);
         });
     }
 
@@ -509,8 +507,9 @@ public class FImportBook extends javax.swing.JFrame {
     private javax.swing.JTextField txfValue;
     // End of variables declaration//GEN-END:variables
 
+    @Override
     public void reload() {
-        loadBook(cbBook);
+        loadBook();
         
         
         spNumber.setValue(0);
@@ -540,8 +539,9 @@ public class FImportBook extends javax.swing.JFrame {
     }
 
 
-    private void loadBook(JComboBox<String> cbBook) {
+    private void loadBook() {
         Controller.loadBook(cbBook);
+        cbBook.setSelectedIndex(-1);
     }
 
     private void loadDate(JTextField txfDate) {
@@ -559,5 +559,25 @@ public class FImportBook extends javax.swing.JFrame {
                 return i;
         }
         return -1;
+    }
+
+    @Override
+    public void releaseAction() {
+        cbBook.removeActionListener(cbBook.getActionListeners()[0]);
+    }
+
+    @Override
+    public void update() {
+        loadBook();
+    }
+
+    @Override
+    public void addAction() {
+        cbBook.addActionListener ((ActionEvent e) -> {
+            if(cbBook.getSelectedItem().toString().equals("Thêm..."))
+            {
+                FManagement.getInstance().addFormToQueue(FBook.getInstance());
+            }
+        });
     }
 }

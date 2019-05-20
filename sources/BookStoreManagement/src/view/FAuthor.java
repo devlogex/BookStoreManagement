@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author tnd
  */
-public class FAuthor extends javax.swing.JFrame {
+public class FAuthor extends MyFrame {
 
     /**
      * Creates new form FAuthor
@@ -176,8 +176,7 @@ public class FAuthor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FManagement.getInstance().setVisible(true);
-        FAuthor.getInstance().setVisible(false);
+        FManagement.getInstance().removeFormInQueue(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAddAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAuthorActionPerformed
@@ -186,12 +185,14 @@ public class FAuthor extends javax.swing.JFrame {
         {
             JOptionPane.showConfirmDialog(FCategoryBook.getInstance(), "Thêm tác giả thành công !","Thông báo", JOptionPane.OK_OPTION);
             txfAddAuthor.setText("");
+            txfSearch.setText("");
             loadTable();
         }
         else
         {
             JOptionPane.showConfirmDialog(FCategoryBook.getInstance(), "Thêm tác giả thất bại !","Thông báo", JOptionPane.OK_OPTION);
             txfAddAuthor.setText("");
+            txfSearch.setText("");
         }
     }//GEN-LAST:event_btnAddAuthorActionPerformed
 
@@ -249,5 +250,25 @@ public class FAuthor extends javax.swing.JFrame {
 
     private void loadTable() {
     Controller.getAuthor(tableAuthor);    
+    }
+
+    @Override
+    public void reload() {
+
+    }
+
+    @Override
+    public void releaseAction() {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void addAction() {
+
     }
 }

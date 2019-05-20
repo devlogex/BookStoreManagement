@@ -28,6 +28,7 @@ public class ImportBookController {
         {
             cbBook.addItem(list.get(i).name()+":"+list.get(i).id());
         }
+        cbBook.addItem("Thêm...");
     }
 
     public boolean AddImportBook(String[][] data,String date,String value) throws ParseException {

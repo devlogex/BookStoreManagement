@@ -9,7 +9,7 @@ package view;
  *
  * @author tnd
  */
-public class FBookInfo extends javax.swing.JFrame {
+public class FBookInfo extends MyFrame {
 
     /**
      * Creates new form FBookInfo
@@ -291,4 +291,24 @@ public class FBookInfo extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel lbBookID;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void reload() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void releaseAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
