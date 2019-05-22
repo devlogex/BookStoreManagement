@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Author;
 import model.Book;
 import model.Category;
+import model.ImportBook;
 
 /**
  *
@@ -21,7 +23,7 @@ public class BookController {
     Book Model=new Book();
 
     public void loadTable(JTable table) {
-        String[] head=new String[]{"STT","Mã sách","Tên sách","Thể loại","Tác giả","Nhà xuất bản","Năm xuất bản"/*,"Số lượng tồn","Đơn giá nhập"*/};
+        String[] head=new String[]{"STT","Mã sách","Tên sách","Thể loại","Tác giả","Nhà xuất bản","Năm xuất bản","Số lượng tồn","Đơn giá nhập"};
         ArrayList<Book> list= Model.getBook();
         Object[][] body=new Object[list.size()][9];
         for(int i=0;i<list.size();i++)
@@ -36,8 +38,8 @@ public class BookController {
             body[i][4]=authors;
             body[i][5]=list.get(i).publishCompany();
             body[i][6]=list.get(i).publishYear();
-//            body[i][7]=list.get(i).count();
-//            body[i][8]=list.get(i).price();
+            body[i][7]=list.get(i).count();
+            body[i][8]=list.get(i).price();
         }
         DefaultTableModel dtm = new DefaultTableModel(body,head){
             @Override
@@ -53,8 +55,8 @@ public class BookController {
         table.getColumnModel().getColumn(4).setPreferredWidth(200);
         table.getColumnModel().getColumn(5).setPreferredWidth(200);
         table.getColumnModel().getColumn(6).setPreferredWidth(220);
-//        table.getColumnModel().getColumn(7).setPreferredWidth(200);
-//        table.getColumnModel().getColumn(8).setPreferredWidth(200);
+        table.getColumnModel().getColumn(7).setPreferredWidth(200);
+        table.getColumnModel().getColumn(8).setPreferredWidth(200);
     }
 
     public void loadCBCategory(JComboBox<String> cbCategory) {
@@ -139,6 +141,48 @@ public class BookController {
         table.getColumnModel().getColumn(6).setPreferredWidth(220);
         table.getColumnModel().getColumn(7).setPreferredWidth(200);
         table.getColumnModel().getColumn(8).setPreferredWidth(200);
+    }
+
+    public Book getBookByID(String id) {
+        return Model.getBookByID(id);
+    }
+
+    public boolean UpdateBook(String id, String name, String category, String authors, String publishCompany, int publishYear) {
+        String categoryID=category.split(":")[1];
+        ArrayList<String> authorsID=new ArrayList<String>();
+        for(String temp:authors.split("-"))
+        {
+            authorsID.add(temp.split(":")[1]);
+        }
+        return Model.UpdateBook(id, name, categoryID, authorsID, publishCompany, publishYear);
+    }
+
+    public void loadImportByBookID(JTable table,String id) {
+        String[] head=new String[]{"STT","Số phiếu nhập","Ngày lập","Số lượng","Đơn giá","Thành tiền"};
+        ArrayList<ImportBook> list= (new ImportBook()).getImporByBookID(id);
+        Object[][] body=new Object[list.size()][6];
+        for(int i=0;i<list.size();i++)
+        {
+            body[i][0]=i;
+            body[i][1]=list.get(i).id();
+            body[i][2]=(new SimpleDateFormat("dd/MM/yyyy")).format(list.get(i).date());
+            body[i][3]=list.get(i).count();
+            body[i][4]=list.get(i).price();
+            body[i][5]=list.get(i).total();
+        }
+        DefaultTableModel dtm = new DefaultTableModel(body,head){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        table.setModel(dtm);
+        table.getColumnModel().getColumn(0).setPreferredWidth(70);
+        table.getColumnModel().getColumn(1).setPreferredWidth(200);
+        table.getColumnModel().getColumn(2).setPreferredWidth(200);
+        table.getColumnModel().getColumn(3).setPreferredWidth(200);
+        table.getColumnModel().getColumn(4).setPreferredWidth(200);
+        table.getColumnModel().getColumn(5).setPreferredWidth(200);
     }
     
     

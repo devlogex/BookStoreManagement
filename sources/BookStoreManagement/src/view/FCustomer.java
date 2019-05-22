@@ -25,7 +25,6 @@ public class FCustomer extends MyFrame {
     }
     public FCustomer() {
         initComponents();
-        reload();
     }
 
     /**
@@ -59,6 +58,7 @@ public class FCustomer extends MyFrame {
         btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Khách hàng");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Khách hàng");

@@ -7,6 +7,7 @@ package view;
 
 import controller.ImportBookController;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,8 +37,6 @@ public class FImportBook extends MyFrame {
     }
     private FImportBook() {
         initComponents();
-        reload();
-        
     }
 
     /**
@@ -442,7 +441,9 @@ public class FImportBook extends MyFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        releaseAction();
         reload();
+        addAction();
     }//GEN-LAST:event_btnNewActionPerformed
 
     /**

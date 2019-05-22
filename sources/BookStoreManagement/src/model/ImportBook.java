@@ -5,8 +5,10 @@
  */
 package model;
 
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -34,7 +36,13 @@ public class ImportBook {
         this.date=date;
         this.valueImport=valueImport;
     }
-
+    public String id(){return id;}
+    public String bookID(){return bookID;}
+    public int count(){return count;}
+    public float price(){return price;}
+    public float total(){return total;}
+    public Date date(){return date;}
+    public float valueImport(){return valueImport;}
 
     public boolean AddImportBook(Date date, float value) {
         SimpleDateFormat df=new SimpleDateFormat("yyyy/MM/dd");
@@ -72,6 +80,29 @@ public class ImportBook {
                 return false;
             }
         } catch (Exception e) {return false;}
+    }
+
+    public ArrayList<ImportBook> getImporByBookID(String bookID) {
+        String SQL="call USP_GetImporByBookID(\""+bookID+"\")";
+        ArrayList<ImportBook> list=new ArrayList<ImportBook>();
+        try{
+            DataAccessHelper.getInstance().getConnect();
+            Statement statement =DataAccessHelper.getInstance().conn.createStatement();
+            ResultSet rs=statement.executeQuery(SQL);
+            while(rs.next())
+            {
+                String id=rs.getString("SoPhieuNhap");
+                String bkID=rs.getString("MaSach");
+                int count=Integer.parseInt(rs.getString("SoLuongNhap"));
+                float price=Math.round(Float.parseFloat(rs.getString("DonGiaNhap"))*10)/10;
+                float total=Math.round(Float.parseFloat(rs.getString("ThanhTien"))*10)/10;
+                Date date=(new SimpleDateFormat("yyyy-MM-dd")).parse(rs.getString("NgayLap"));
+                float valueImport=Math.round(Float.parseFloat(rs.getString("TongTien"))*10)/10;
+                list.add(new ImportBook(id,bkID,count,price,total,date,valueImport));
+            }
+            DataAccessHelper.getInstance().getClose();
+        } catch (Exception e) {}
+        return list;
     }
     
 }

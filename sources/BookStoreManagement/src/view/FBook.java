@@ -26,9 +26,6 @@ public class FBook extends MyFrame {
     }
     private FBook() {
         initComponents();
-        loadCBCategory();
-        loadCBAuthor();
-        loadTable();
     }
     
     @Override
@@ -92,6 +89,11 @@ public class FBook extends MyFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tableBook.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableBookMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tableBook);
@@ -263,7 +265,7 @@ public class FBook extends MyFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void cbAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAuthorActionPerformed
-        if(cbAuthor.getSelectedIndex()!=-1)
+        if(cbAuthor.getSelectedIndex()!=-1 && !cbAuthor.getSelectedItem().toString().equals("Thêm..."))
             if(!txfAuthor.getText().contains(cbAuthor.getSelectedItem().toString()))
                 txfAuthor.setText(txfAuthor.getText()+cbAuthor.getSelectedItem().toString()+"-");
     }//GEN-LAST:event_cbAuthorActionPerformed
@@ -291,7 +293,7 @@ public class FBook extends MyFrame {
         }
         else
         {
-            JOptionPane.showConfirmDialog(FCategoryBook.getInstance(), "Thêm sách thất bại !","Thông báo", JOptionPane.OK_OPTION);
+            JOptionPane.showConfirmDialog(FBook.getInstance(), "Thêm sách thất bại !","Thông báo", JOptionPane.OK_OPTION);
             txfname.setText("");
             txfAuthor.setText("");
             txfPublishCompany.setText("");
@@ -302,6 +304,11 @@ public class FBook extends MyFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Controller.searchBook(txfSearch.getText(),tableBook);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tableBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBookMouseClicked
+        FBookInfo.getInstance().setBook(Controller.getBookByID(tableBook.getModel().getValueAt(tableBook.getSelectedRow(), 1).toString()));
+        FManagement.getInstance().addFormToQueue(FBookInfo.getInstance());
+    }//GEN-LAST:event_tableBookMouseClicked
 
     /**
      * @param args the command line arguments
@@ -361,7 +368,6 @@ public class FBook extends MyFrame {
 
     private void loadTable() {
         Controller.loadTable(tableBook);
-        
     }
 
     private void loadCBCategory() {
@@ -399,6 +405,7 @@ public class FBook extends MyFrame {
     public void update() {
         loadCBCategory();
         loadCBAuthor();
+        loadTable();
     }
 }
 

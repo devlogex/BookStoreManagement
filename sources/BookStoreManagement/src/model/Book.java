@@ -98,4 +98,57 @@ public class Book {
             }
         } catch (Exception e) {return false;}
     }
+
+    public Book getBookByID(String bookID) {
+        String SQL="call USP_GetBookByID(\""+bookID+"\")";
+        Book book=null;
+        try{
+            DataAccessHelper.getInstance().getConnect();
+            Statement statement =DataAccessHelper.getInstance().conn.createStatement();
+            ResultSet rs=statement.executeQuery(SQL);
+            while(rs.next())
+            {
+                String id=rs.getString("MaSach");
+                String name=rs.getString("TenSach");
+                ArrayList<Author> authors=(new Author()).getAuthorByBook(rs.getString("MaSach"));
+                Category category=(new Category()).getCategoryByBook(rs.getString("MaSach"));
+                String publishCompany=rs.getString("NhaXuatBan");
+                int publishYear=Integer.parseInt(rs.getString("NamXuatBan"));
+                int count=Integer.parseInt(rs.getString("SoLuongTon"));
+                float price=(float)Math.round(Float.parseFloat(rs.getString("DonGiaNhap"))*10)/10;
+                book=new Book(id, name, authors, category, publishCompany, publishYear, count, price);
+            }
+            DataAccessHelper.getInstance().getClose();
+        } catch (Exception e) {}
+        return book;
+    }
+
+    public boolean UpdateBook(String id, String name, String categoryID, ArrayList<String> authorsID, String publishCompany, int publishYear) {
+        String SQL="call USP_UpdateBook(\""+id+"\",\""+name+"\",\""+categoryID+"\",\""+publishCompany+"\",\""+publishYear+"\")";
+        try{
+            DataAccessHelper.getInstance().getConnect();
+            Statement statement =DataAccessHelper.getInstance().conn.createStatement();
+            int rs1=statement.executeUpdate(SQL);
+            int rs2=0;
+            for(int i=0;i<authorsID.size();i++)
+            {
+                rs2=statement.executeUpdate("call USP_UpdateBookAuthor(\""+id+"\",\""+authorsID.get(i)+"\")");
+                if(rs2<=0)
+                {
+                    DataAccessHelper.getInstance().getClose();
+                    return false;
+                }
+            }
+            if(rs1 >0)
+            {
+                DataAccessHelper.getInstance().getClose();
+                return true;
+            }
+            else
+            {
+                DataAccessHelper.getInstance().getClose();
+                return false;
+            }
+        } catch (Exception e) {return false;}
+    }
 }
