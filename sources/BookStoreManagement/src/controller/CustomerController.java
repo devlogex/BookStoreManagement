@@ -5,9 +5,11 @@
  */
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import model.Bill;
 import model.Customer;
 
 /**
@@ -89,6 +91,46 @@ public class CustomerController {
         table.getColumnModel().getColumn(4).setPreferredWidth(200);
         table.getColumnModel().getColumn(5).setPreferredWidth(200);
         table.getColumnModel().getColumn(6).setPreferredWidth(200);
+    }
+
+    public Customer getCustomerByID(String id) {
+        return Model.getCustomerByID(id);
+    }
+
+    public boolean UpdateCustomer(String id, String name, String phone, String email, String address) {
+        return Model.UpdateCustomer(id,name,phone,email,address);
+    }
+
+    public void loadBillByCustomerID(JTable table,String id) {
+        String[] head=new String[]{"STT","Số hóa đơn","Ngày lập","Trị giá hóa đơn"};
+        ArrayList<Bill> list= (new Bill()).getBillByCustomerID(id);
+        for(int i=0;i<list.size();i++)
+        {
+            for(int j=i+1;j<list.size();j++)
+            {
+                if(list.get(i).id().equals(list.get(j).id()))
+                    list.remove(j);
+            }
+        }
+        Object[][] body=new Object[list.size()][4];
+        for(int i=0;i<list.size();i++)
+        {
+            body[i][0]=i;
+            body[i][1]=list.get(i).id();
+            body[i][2]=(new SimpleDateFormat("dd/MM/yyyy")).format(list.get(i).date());
+            body[i][3]=list.get(i).value();
+        }
+        DefaultTableModel dtm = new DefaultTableModel(body,head){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        table.setModel(dtm);
+        table.getColumnModel().getColumn(0).setPreferredWidth(70);
+        table.getColumnModel().getColumn(1).setPreferredWidth(200);
+        table.getColumnModel().getColumn(2).setPreferredWidth(200);
+        table.getColumnModel().getColumn(3).setPreferredWidth(200);
     }
     
     

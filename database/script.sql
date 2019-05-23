@@ -290,3 +290,61 @@ BEGIN
 END; $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE USP_GetBookByID(bookID int)
+BEGIN
+	select * from SACH where MaSach=bookID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_UpdateBook(id int,name NVARCHAR(100),categoryID int, publishCompany nvarchar(200),publishYear int)
+BEGIN
+	update SACH 
+    set TenSach=name,MaTheLoai=categoryID,NhaXuatBan=publishCompany,NamXuatBan=publishYear
+    where MaSach=id;
+    
+    delete from CT_TACGIA where MaSach=id;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_UpdateBookAuthor(bookID int,authorID int)
+BEGIN
+	insert CT_TACGIA values(bookID,authorID);
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetImporByBookID(bookID int)
+BEGIN
+	select p.SoPhieuNhap,p.NgayLap,p.TongTien,ct.MaSach,ct.DonGiaNhap,ct.SoLuongNhap,ct.ThanhTien
+    from PHIEUNHAPSACH p,CT_PHIEUNHAPSACH ct
+    where p.SoPhieuNhap=ct.SoPhieuNhap and ct.MaSach=bookID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetCustomerByID(customerID int)
+BEGIN
+	select * from KHACHHANG where MaKhachHang=customerID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_UpdateCusTomer(customerID int,name NVARCHAR(100),phone varchar(100),email varchar(100),address nvarchar(100) )
+BEGIN
+	update KHACHHANG 
+    set TenKhachHang=name,SoDienThoai=phone,Email=email,DiaChi=address
+    where MaKhachHang=customerID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetBillByCustomerID(customerID int)
+BEGIN
+	select h.SoHoaDon,h.MaKhachHang,h.NgayLap,h.TongTien,h.ThanhToan,h.ConLai,ct.MaSach,ct.SoLuong,ct.DonGiaBan,ct.ThanhTien
+    from HOADON h,CT_HOADON ct
+    where h.SoHoaDon=ct.SoHoaDon and h.MaKhachHang=customerID;
+END; $$
+DELIMITER ;

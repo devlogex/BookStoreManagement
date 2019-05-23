@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/view/FCustomer.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/model/Bill.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/view/FBill.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/controller/BillController.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/view/FBookInfo.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/controller/CustomerController.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/view/FBillInfo.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/view/FBook.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/view/FCustomerInfo.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/model/ImportBook.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/model/Book.java</file>
+            <file>file:/home/tnd/Projects/BookStoreManagement/sources/BookStoreManagement/src/model/Customer.java</file>
         </group>
     </open-files>
 </project-private>

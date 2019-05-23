@@ -23,7 +23,7 @@ public class FCustomer extends MyFrame {
             instance=new FCustomer();
         return instance;
     }
-    public FCustomer() {
+    private FCustomer() {
         initComponents();
     }
 
@@ -173,6 +173,11 @@ public class FCustomer extends MyFrame {
                 return types [columnIndex];
             }
         });
+        tableCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableCustomerMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableCustomer);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -273,6 +278,11 @@ public class FCustomer extends MyFrame {
         Controller.SearchCustomer(tableCustomer,txfSearch.getText());
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void tableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomerMouseClicked
+        FCustomerInfo.getInstance().setCustomer(Controller.getCustomerByID(tableCustomer.getModel().getValueAt(tableCustomer.getSelectedRow(), 1).toString()));
+        FManagement.getInstance().addFormToQueue(FCustomerInfo.getInstance());
+    }//GEN-LAST:event_tableCustomerMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -348,7 +358,7 @@ public class FCustomer extends MyFrame {
 
     @Override
     public void update() {
-
+        Controller.loadCustomer(tableCustomer);
     }
 
     @Override

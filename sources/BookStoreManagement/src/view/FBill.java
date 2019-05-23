@@ -33,7 +33,6 @@ public class FBill extends MyFrame {
     }
     private FBill() {
         initComponents();
-        reload();
     }
 
     /**
@@ -469,7 +468,9 @@ public class FBill extends MyFrame {
     }//GEN-LAST:event_txfMoneyReceiveActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        releaseAction();
         reload();
+        addAction();
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed

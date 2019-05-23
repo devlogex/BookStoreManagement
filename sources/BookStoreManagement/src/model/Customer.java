@@ -79,6 +79,47 @@ public class Customer {
         } catch (Exception e) {}
         return list;
     }
+
+    public Customer getCustomerByID(String customerID) {
+        String SQL="CALL USP_GetCustomerByID(\""+customerID+"\")";
+        Customer customer=null;
+        try{
+            DataAccessHelper.getInstance().getConnect();
+            Statement statement =DataAccessHelper.getInstance().conn.createStatement();
+            ResultSet rs=statement.executeQuery(SQL);
+            while(rs.next())
+            {
+                String id=rs.getString("MaKhachHang");
+                String name=rs.getString("TenKhachHang");
+                String phone=rs.getString("SoDienThoai");
+                String email=rs.getString("Email");
+                String address=rs.getString("DiaChi");
+                Float owe=(float)Math.round(Float.parseFloat(rs.getString("SoTienNo")));
+                customer=new Customer(id,name,phone,email,address,owe);
+            }
+            DataAccessHelper.getInstance().getClose();
+        } catch (Exception e) {}
+        return customer;
+    }
+
+    public boolean UpdateCustomer(String id, String name, String phone, String email, String address) {
+        String SQL="call USP_UpdateCusTomer(\""+id+"\",\""+name+"\",\""+phone+"\",\""+email+"\",\""+address+"\")";
+        try{
+            DataAccessHelper.getInstance().getConnect();
+            Statement statement =DataAccessHelper.getInstance().conn.createStatement();
+            int rs=statement.executeUpdate(SQL);
+            if(rs>0)
+            {
+                DataAccessHelper.getInstance().getClose();
+                return true;
+            }
+            else
+            {
+                DataAccessHelper.getInstance().getClose();
+                return false;
+            }
+        } catch (Exception e) {return false;}
+    }
     
     
 }
