@@ -170,6 +170,11 @@ public class FCustomerInfo extends MyFrame {
 
             }
         ));
+        tableBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableBillMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableBill);
 
         btnExit.setText("Thoát");
@@ -263,6 +268,11 @@ public class FCustomerInfo extends MyFrame {
             JOptionPane.showConfirmDialog(FBook.getInstance(), "Cập nhật thất bại !","Thông báo", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void tableBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBillMouseClicked
+        FBillInfo.getInstance().setBill(tableBill.getModel().getValueAt(tableBill.getSelectedRow(), 1).toString());
+        FManagement.getInstance().addFormToQueue(FBillInfo.getInstance());
+    }//GEN-LAST:event_tableBillMouseClicked
 
     /**
      * @param args the command line arguments

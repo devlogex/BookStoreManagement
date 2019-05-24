@@ -116,4 +116,31 @@ public class Bill {
         } catch (Exception e) {}
         return list;
     }
+
+    public ArrayList<Bill> getBillByBillID(String billID) {
+        String SQL="call USP_GetBillByBillID(\""+billID+"\")";
+        ArrayList<Bill> list=new ArrayList<Bill>();
+        try{
+            DataAccessHelper.getInstance().getConnect();
+            Statement statement =DataAccessHelper.getInstance().conn.createStatement();
+            ResultSet rs=statement.executeQuery(SQL);
+            while(rs.next())
+            {
+                String id=rs.getString("SoHoaDon");
+                String customerID=rs.getString("MaKhachHang");
+                Date date=(new SimpleDateFormat("yyyy-MM-dd")).parse(rs.getString("NgayLap"));
+                float value=Math.round(Float.parseFloat(rs.getString("TongTien"))*10)/10;
+                float moneyReceive=Math.round(Float.parseFloat(rs.getString("ThanhToan"))*10)/10;
+                float moneyChange=Math.round(Float.parseFloat(rs.getString("ConLai"))*10)/10;
+                String bookID=rs.getString("MaSach");
+                int count=Integer.parseInt(rs.getString("SoLuong"));
+                float price=Math.round(Float.parseFloat(rs.getString("DonGiaBan"))*10)/10;
+                float moneyBook=Math.round(Float.parseFloat(rs.getString("ThanhTien"))*10)/10;
+                
+                list.add(new Bill(id, customerID, date, value, moneyReceive,  moneyChange, bookID, count, price, moneyBook));
+            }
+            DataAccessHelper.getInstance().getClose();
+        } catch (Exception e) {}
+        return list;
+    }
 }

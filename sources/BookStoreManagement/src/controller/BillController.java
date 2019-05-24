@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Bill;
@@ -107,5 +108,44 @@ public class BillController {
         }
         return true;
     }
+
+    public void loadBillInfo(String billID, JLabel lbBillID, JLabel lbCustomerID, JLabel lbCustomerName, JLabel lbDate, JLabel lbValue, JLabel lbMoneyReceive, JLabel lbMoneyChange, JTable table) {
+        ArrayList<Bill>list=new ArrayList<Bill>();
+        list=Model.getBillByBillID(billID);
+        lbBillID.setText(billID);
+        lbCustomerID.setText(list.get(0).customerID());
+        lbCustomerName.setText((new Customer()).getCustomerByID(lbCustomerID.getText()).name());
+        lbDate.setText((new SimpleDateFormat("dd/MM/yyyy")).format(list.get(0).date()));
+        lbValue.setText(String.valueOf(Math.round(list.get(0).value()*10)/10));
+        lbMoneyReceive.setText(String.valueOf(Math.round(list.get(0).moneyReceive()*10)/10));
+        lbMoneyChange.setText(String.valueOf(Math.round(list.get(0).moneyChange()*10)/10));
+        
+        String[] head=new String[]{"STT","Mã sách","Tên sách","Số lượng","Giá bán","Thành tiền"};
+        Object[][] body=new Object[list.size()][6];
+        for(int i=0;i<list.size();i++)
+        {
+            body[i][0]=i;
+            body[i][1]=list.get(i).bookID();
+            body[i][2]=(new Book()).getBookByID(list.get(i).bookID()).name();
+            body[i][3]=list.get(i).count();
+            body[i][4]=list.get(i).price();
+            body[i][5]=list.get(i).moneyBook();
+        }
+        DefaultTableModel dtm = new DefaultTableModel(body,head){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        table.setModel(dtm);
+        table.getColumnModel().getColumn(0).setPreferredWidth(70);
+        table.getColumnModel().getColumn(1).setPreferredWidth(200);
+        table.getColumnModel().getColumn(2).setPreferredWidth(200);
+        table.getColumnModel().getColumn(3).setPreferredWidth(200);
+        table.getColumnModel().getColumn(4).setPreferredWidth(200);
+        table.getColumnModel().getColumn(5).setPreferredWidth(200);
+        
+    }
+
 
 }
