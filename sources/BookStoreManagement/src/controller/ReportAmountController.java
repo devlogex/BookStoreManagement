@@ -16,19 +16,9 @@ import model.ReportAmount;
 public class ReportAmountController {
     ReportAmount Model = new ReportAmount();
     
-    public void LoadBook(JTable table)
-    {
-        ArrayList<Book>list= (new Book()).getBook();
-        for(int i=0;i<list.size();i++)
-        {
-            table.getModel().setValueAt(list.get(i).id(),i, 0);
-            table.getModel().setValueAt(list.get(i).name(),i, 1);
-        }
-    }
-    
     public void getReportTable(JTable table, int thang, int nam)
     {
-        String[] head=new String[]{"Tháng/Năm","Mã sách","Tồn đầu","Phát sinh","Tồn cuối"};
+        //String[] head=new String[]{"Tháng/Năm","Mã sách","Tồn đầu","Phát sinh","Tồn cuối"};
         ArrayList<ReportAmount> list = Model.getAmountReport(thang,nam);
         for(int i=0;i<list.size();i++)
         {

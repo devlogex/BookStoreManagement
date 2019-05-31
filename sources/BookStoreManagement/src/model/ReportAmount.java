@@ -37,7 +37,7 @@ public class ReportAmount {
     public int TonCuoi(){return toncuoi;}
     
     public ArrayList<ReportAmount> getAmountReport(int thang, int nam) {
-        String SQL="call USP_GetAmountByDate(\"" + thang + "\",\"" + nam + "\")";
+        String SQL="call USP_GetAmountByDate('" + thang + "','" + nam + "')";
         ArrayList<ReportAmount> list=new ArrayList<ReportAmount>();
         try{
             DataAccessHelper.getInstance().getConnect();
