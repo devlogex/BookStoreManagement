@@ -6,7 +6,9 @@
 package view;
 
 import controller.BillController;
+import controller.ExportController;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -503,6 +505,16 @@ public class FBill extends MyFrame {
             }
         } catch (ParseException ex) {
             Logger.getLogger(FBill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        //export xls
+        try{
+            ExportController exporter = new ExportController();
+            exporter.ExportTable(tableBill, new File(System.getProperty("user.dir")+"//bill.xls"));
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
