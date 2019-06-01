@@ -146,15 +146,11 @@ public class FReportAmount extends javax.swing.JFrame {
 
     private void showBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBtnActionPerformed
         // TODO add your handling code here:
-        //DefaultTableModel model = (DefaultTableModel) tableAmount.getModel();
-        //model.setRowCount(0);
-        if (txtMonth.getText() != "" || txtYear.getText() != "") {
-            int thang=Integer.parseInt(txtMonth.getText());
-            int nam=Integer.parseInt(txtYear.getText());
-            loadTable(thang,nam);
+        if (txtMonth.getText().equals("") || txtYear.getText().equals("")) {
+            JOptionPane.showConfirmDialog(this, "Xin vui lòng nhập đầy đủ tháng năm","Lỗi",JOptionPane.WARNING_MESSAGE);
         }
         else
-            JOptionPane.showConfirmDialog(this, "Xin vui lòng nhập đầy đủ tháng năm","Lỗi",JOptionPane.WARNING_MESSAGE);
+            loadTable(Integer.parseInt(txtMonth.getText()),Integer.parseInt(txtYear.getText()));
     }//GEN-LAST:event_showBtnActionPerformed
 
     /**

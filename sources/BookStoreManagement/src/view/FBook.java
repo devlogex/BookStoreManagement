@@ -6,6 +6,8 @@
 package view;
 
 import controller.BookController;
+import controller.ExportController;
+import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,6 +67,7 @@ public class FBook extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        exportBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sách");
@@ -156,6 +159,13 @@ public class FBook extends javax.swing.JFrame {
 
         jLabel7.setText("Năm xuất bản");
 
+        exportBtn.setText("Xuất file");
+        exportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -203,7 +213,10 @@ public class FBook extends javax.swing.JFrame {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(exportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnExit)))
                         .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
@@ -246,7 +259,9 @@ public class FBook extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExit)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnExit)
+                            .addComponent(exportBtn))))
                 .addGap(25, 25, 25))
         );
 
@@ -298,6 +313,17 @@ public class FBook extends javax.swing.JFrame {
         Controller.searchBook(txfSearch.getText(),tableBook);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void exportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            ExportController exporter = new ExportController();
+            exporter.ExportTable(tableBook, new File("E:\\Github Project\\BookStoreManagement\\BookData.xls"));
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_exportBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -338,6 +364,7 @@ public class FBook extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JComboBox<String> cbAuthor;
     private javax.swing.JComboBox<String> cbCategory;
+    private javax.swing.JButton exportBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
