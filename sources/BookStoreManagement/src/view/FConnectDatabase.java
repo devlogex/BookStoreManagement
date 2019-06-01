@@ -195,7 +195,8 @@ public class FConnectDatabase extends javax.swing.JFrame {
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
         DataAccessHelper.getInstance().dbPath = "jdbc:mysql://"+txfHost.getText()+":"+txfPort.getText()+"/"+txfDatabase.getText();
         DataAccessHelper.getInstance().username = txfUserName.getText();
-        DataAccessHelper.getInstance().password = txfPassword.getText();
+        //DataAccessHelper.getInstance().password = txfPassword.getText();
+        DataAccessHelper.getInstance().password = "123456";
         
         try {
             DataAccessHelper.getInstance().getConnect();
