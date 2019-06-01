@@ -348,3 +348,111 @@ BEGIN
     where h.SoHoaDon=ct.SoHoaDon and h.MaKhachHang=customerID;
 END; $$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetBillByBillID(billID int)
+BEGIN
+	select h.SoHoaDon,h.MaKhachHang,h.NgayLap,h.TongTien,h.ThanhToan,h.ConLai,ct.MaSach,ct.SoLuong,ct.DonGiaBan,ct.ThanhTien
+    from HOADON h,CT_HOADON ct
+    where h.SoHoaDon=ct.SoHoaDon and h.SoHoaDon=billID;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetReportInventory(month int,year int)
+BEGIN
+	select * from BAOCAOTON where Thang=month and Nam=year;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_ImportReportInventory(month int,year int,bookID int)
+BEGIN
+	declare preMonth int;
+    declare preYear int;
+    declare first int;
+    declare incurred int;
+    declare last int;
+		if(month =1)
+		then
+			set preMonth=12;
+			set preYear=year-1;
+		else
+			set preMonth=month-1;
+			set preYear=year;
+		end if;
+        
+        if((select count(*) from BAOCAOTON where Thang=preMonth and Nam=preYear and MaSach=bookID)>0)
+        then
+			set first=(select TonCuoi from BAOCAOTON where Thang=preMonth and Nam=preYear and MaSach=bookID);
+        else
+			set first=0;
+		end if;
+        if((select count(*) from CT_PHIEUNHAPSACH where MaSach=bookID)>0)
+        then
+			set incurred=(select sum(SoLuongNhap) from CT_PHIEUNHAPSACH where MaSach=bookID);
+        else
+			set incurred=0;
+		end if;
+        
+        if((select count(*) from CT_HOADON where MaSach=bookID)>0)
+        then
+			set last=first+incurred-(select sum(SoLuong) from CT_HOADON where MaSach=bookID);
+		else
+			set last=first+incurred;
+        end if;
+        insert BAOCAOTON values(
+			month,
+			year,
+			bookID,
+			first,
+			incurred,
+			last
+		);
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_FreshReportInventory(month int,year int)
+BEGIN
+	delete from BAOCAOTON where Thang=month and Nam=year;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_FreshReportRevenue(month int,year int)
+BEGIN
+	delete from BAOCAODOANHTHU where Thang=month and Nam=year;
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_ImportReportRevenue(month int,year int,bookID int)
+BEGIN
+	declare count int;
+    declare money float;
+    if((select count(*) from CT_HOADON where MaSach=bookID)>0)
+    then
+		set count=(select sum(SoLuong) from CT_HOADON where MaSach=bookID);
+        set money=(select sum(ThanhTien) from CT_HOADON where MaSach=bookID);
+	else
+		set count=0;
+        set money=0;
+	end if;
+    
+    insert BAOCAODOANHTHU values(
+		month,
+        year,
+        bookID,
+        count,
+        money
+    );
+END; $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE USP_GetReportRevenue(month int,year int)
+BEGIN
+	select * from BAOCAODOANHTHU where Thang=month and Nam=year;
+END; $$
+DELIMITER ;

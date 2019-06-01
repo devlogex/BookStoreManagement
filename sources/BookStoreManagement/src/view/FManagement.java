@@ -131,6 +131,11 @@ public class FManagement extends MyFrame {
         });
 
         btnReportRevenue.setText("Báo cáo doanh thu");
+        btnReportRevenue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportRevenueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,8 +223,12 @@ public class FManagement extends MyFrame {
     }//GEN-LAST:event_btnImportBookActionPerformed
 
     private void btnReportInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportInventoryActionPerformed
-        
+        addFormToQueue(FReportInventory.getInstance());
     }//GEN-LAST:event_btnReportInventoryActionPerformed
+
+    private void btnReportRevenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportRevenueActionPerformed
+        addFormToQueue(FReportRevenue.getInstance());
+    }//GEN-LAST:event_btnReportRevenueActionPerformed
 
     /**
      * @param args the command line arguments
