@@ -45,16 +45,29 @@ public class FManagement extends MyFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         btnSeachCategory = new javax.swing.JButton();
         btnSearchAuthor = new javax.swing.JButton();
         btnSearchBook = new javax.swing.JButton();
-        btnImportBook = new javax.swing.JButton();
         btnSearchCustomer = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnImportBook = new javax.swing.JButton();
         btnBill = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         btnReportInventory = new javax.swing.JButton();
         btnReportRevenue = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuSearchCatagory = new javax.swing.JMenuItem();
+        menuSearchAuthor = new javax.swing.JMenuItem();
+        menuSearchBook = new javax.swing.JMenuItem();
+        menuSearchCustomer = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuReportInventory = new javax.swing.JMenuItem();
+        menuReportRevenue = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        menuAboutUs = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -64,6 +77,16 @@ public class FManagement extends MyFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Quản lý nhà sách");
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tra cứu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(204, 204, 0))); // NOI18N
+
+        btnSeachCategory.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSeachCategory.setText("Tra cứu thể loại sách");
         btnSeachCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +94,7 @@ public class FManagement extends MyFrame {
             }
         });
 
+        btnSearchAuthor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSearchAuthor.setText("Tra cứu tác giả");
         btnSearchAuthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +102,7 @@ public class FManagement extends MyFrame {
             }
         });
 
+        btnSearchBook.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSearchBook.setText("Tra cứu sách");
         btnSearchBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,13 +110,7 @@ public class FManagement extends MyFrame {
             }
         });
 
-        btnImportBook.setText("Lập phiếu nhập sách");
-        btnImportBook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportBookActionPerformed(evt);
-            }
-        });
-
+        btnSearchCustomer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSearchCustomer.setText("Tra cứu khách hàng");
         btnSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +118,45 @@ public class FManagement extends MyFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSeachCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                    .addComponent(btnSearchAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                    .addComponent(btnSearchBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSearchCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnSeachCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSearchAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSearchBook, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lập phiếu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(204, 204, 0))); // NOI18N
+
+        btnImportBook.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnImportBook.setText("Lập phiếu nhập sách");
+        btnImportBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportBookActionPerformed(evt);
+            }
+        });
+
+        btnBill.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBill.setText("Lập hóa đơn");
         btnBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,23 +164,31 @@ public class FManagement extends MyFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Quản lý nhà sách");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnImportBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBill, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnImportBook, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Báo cáo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(204, 204, 0))); // NOI18N
+
+        btnReportInventory.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnReportInventory.setText("Báo cáo tồn");
         btnReportInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +196,7 @@ public class FManagement extends MyFrame {
             }
         });
 
+        btnReportRevenue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnReportRevenue.setText("Báo cáo doanh thu");
         btnReportRevenue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,53 +204,122 @@ public class FManagement extends MyFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnReportRevenue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReportInventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnReportInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReportRevenue, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jMenu1.setText("Tra cứu");
+
+        menuSearchCatagory.setText("Thể loại sách");
+        menuSearchCatagory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSearchCatagoryActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuSearchCatagory);
+
+        menuSearchAuthor.setText("Tác giả");
+        menuSearchAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSearchAuthorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuSearchAuthor);
+
+        menuSearchBook.setText("Sách");
+        menuSearchBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSearchBookActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuSearchBook);
+
+        menuSearchCustomer.setText("Khách hàng");
+        menuSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSearchCustomerActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuSearchCustomer);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Báo cáo");
+
+        menuReportInventory.setText("Báo cáo tồn");
+        menuReportInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReportInventoryActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuReportInventory);
+
+        menuReportRevenue.setText("Báo cáo doanh thu");
+        menuReportRevenue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReportRevenueActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuReportRevenue);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Giới thiệu");
+
+        menuAboutUs.setText("Về chúng tôi");
+        menuAboutUs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAboutUsActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuAboutUs);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSearchCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSearchAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSeachCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSearchBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnImportBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReportInventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReportRevenue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(38, 38, 38)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSeachCategory)
-                        .addGap(19, 19, 19)
-                        .addComponent(btnSearchAuthor)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearchBook)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnImportBook)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearchCustomer)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBill)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReportInventory)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReportRevenue)
-                        .addGap(0, 11, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -230,6 +366,41 @@ public class FManagement extends MyFrame {
         addFormToQueue(FReportRevenue.getInstance());
     }//GEN-LAST:event_btnReportRevenueActionPerformed
 
+    private void menuSearchCatagoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchCatagoryActionPerformed
+        // TODO add your handling code here:
+        addFormToQueue(FCategoryBook.getInstance());
+    }//GEN-LAST:event_menuSearchCatagoryActionPerformed
+
+    private void menuSearchAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchAuthorActionPerformed
+        // TODO add your handling code here:
+        addFormToQueue(FAuthor.getInstance());
+    }//GEN-LAST:event_menuSearchAuthorActionPerformed
+
+    private void menuSearchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchBookActionPerformed
+        // TODO add your handling code here:
+        addFormToQueue(FBook.getInstance());
+    }//GEN-LAST:event_menuSearchBookActionPerformed
+
+    private void menuSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchCustomerActionPerformed
+        // TODO add your handling code here:
+        addFormToQueue(FCustomer.getInstance());
+    }//GEN-LAST:event_menuSearchCustomerActionPerformed
+
+    private void menuReportInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportInventoryActionPerformed
+        // TODO add your handling code here:
+        addFormToQueue(FReportInventory.getInstance());
+    }//GEN-LAST:event_menuReportInventoryActionPerformed
+
+    private void menuReportRevenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportRevenueActionPerformed
+        // TODO add your handling code here:
+        addFormToQueue(FReportRevenue.getInstance());
+    }//GEN-LAST:event_menuReportRevenueActionPerformed
+
+    private void menuAboutUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAboutUsActionPerformed
+        // TODO add your handling code here:
+        addFormToQueue(FAboutUs.getInstance());
+    }//GEN-LAST:event_menuAboutUsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,7 +444,20 @@ public class FManagement extends MyFrame {
     private javax.swing.JButton btnSearchBook;
     private javax.swing.JButton btnSearchCustomer;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JMenuItem menuAboutUs;
+    private javax.swing.JMenuItem menuReportInventory;
+    private javax.swing.JMenuItem menuReportRevenue;
+    private javax.swing.JMenuItem menuSearchAuthor;
+    private javax.swing.JMenuItem menuSearchBook;
+    private javax.swing.JMenuItem menuSearchCatagory;
+    private javax.swing.JMenuItem menuSearchCustomer;
     // End of variables declaration//GEN-END:variables
 
     public void addFormToQueue(MyFrame f){
