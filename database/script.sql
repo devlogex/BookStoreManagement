@@ -388,16 +388,20 @@ BEGIN
         else
 			set first=0;
 		end if;
-        if((select count(*) from CT_PHIEUNHAPSACH where MaSach=bookID)>0)
+        if((select count(*) from CT_PHIEUNHAPSACH ct,PHIEUNHAPSACH p
+			where MaSach=bookID and ct.SoPhieuNhap=p.SoPhieuNhap and month(p.NgayLap)=month and year(p.NgayLap)=year)>0)
         then
-			set incurred=(select sum(SoLuongNhap) from CT_PHIEUNHAPSACH where MaSach=bookID);
+			set incurred=(select sum(ct.SoLuongNhap) from CT_PHIEUNHAPSACH ct,PHIEUNHAPSACH p 
+				where MaSach=bookID and ct.SoPhieuNhap=p.SoPhieuNhap and month(p.NgayLap)=month and year(p.NgayLap)=year);
         else
 			set incurred=0;
 		end if;
         
-        if((select count(*) from CT_HOADON where MaSach=bookID)>0)
+        if((select count(*) from CT_HOADON ct,HOADON h
+			where MaSach=bookID and ct.SoHoaDon=h.SoHoaDon and month(h.NgayLap)=month and year(h.NgayLap)=year)>0)
         then
-			set last=first+incurred-(select sum(SoLuong) from CT_HOADON where MaSach=bookID);
+			set last=first+incurred-(select sum(ct.SoLuong) from CT_HOADON ct,HOADON h 
+										where MaSach=bookID and ct.SoHoaDon=h.SoHoaDon and month(h.NgayLap)=month and year(h.NgayLap)=year);
 		else
 			set last=first+incurred;
         end if;
@@ -431,10 +435,13 @@ CREATE PROCEDURE USP_ImportReportRevenue(month int,year int,bookID int)
 BEGIN
 	declare count int;
     declare money float;
-    if((select count(*) from CT_HOADON where MaSach=bookID)>0)
+    if((select count(*) from CT_HOADON ct,HOADON h 
+		where MaSach=bookID and ct.SoHoaDon=h.SoHoaDon and month(h.NgayLap)=month and year(h.NgayLap)=year)>0)
     then
-		set count=(select sum(SoLuong) from CT_HOADON where MaSach=bookID);
-        set money=(select sum(ThanhTien) from CT_HOADON where MaSach=bookID);
+		set count=(select sum(ct.SoLuong) from CT_HOADON ct,HOADON h
+        where MaSach=bookID and ct.SoHoaDon=h.SoHoaDon and month(h.NgayLap)=month and year(h.NgayLap)=year);
+        set money=(select sum(ct.ThanhTien) from CT_HOADON ct,HOADON h
+        where MaSach=bookID and ct.SoHoaDon=h.SoHoaDon and month(h.NgayLap)=month and year(h.NgayLap)=year);
 	else
 		set count=0;
         set money=0;
