@@ -5,6 +5,7 @@
  */
 package view;
 import controller.CategoryController;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,7 @@ public class FCategoryBook extends MyFrame {
     private FCategoryBook() {
         initComponents();
         loadTable();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Github Project\\BookStoreManagement\\images\\bookstore.png"));
     }
 
     /**

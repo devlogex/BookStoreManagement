@@ -6,6 +6,7 @@
 package view;
 
 import controller.AuthorController;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +29,7 @@ public class FAuthor extends MyFrame {
     private FAuthor() {
         initComponents();
         loadTable();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Github Project\\BookStoreManagement\\images\\bookstore.png"));
     }
 
     /**

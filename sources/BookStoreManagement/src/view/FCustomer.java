@@ -6,6 +6,7 @@
 package view;
 
 import controller.CustomerController;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,7 @@ public class FCustomer extends MyFrame {
     }
     private FCustomer() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Github Project\\BookStoreManagement\\images\\bookstore.png"));
     }
 
     /**

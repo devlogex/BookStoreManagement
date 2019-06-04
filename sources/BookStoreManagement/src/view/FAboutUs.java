@@ -196,7 +196,6 @@ public class FAboutUs extends MyFrame {
 
     @Override
     public void reload() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

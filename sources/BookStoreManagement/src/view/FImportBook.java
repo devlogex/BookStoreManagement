@@ -6,6 +6,7 @@
 package view;
 
 import controller.ImportBookController;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -37,6 +38,7 @@ public class FImportBook extends MyFrame {
     }
     private FImportBook() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Github Project\\BookStoreManagement\\images\\bookstore.png"));
     }
 
     /**

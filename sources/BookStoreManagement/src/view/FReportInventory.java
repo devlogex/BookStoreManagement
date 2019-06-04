@@ -6,6 +6,7 @@
 package view;
 
 import controller.ReportInventoryController;
+import java.awt.Toolkit;
 
 /**
  *
@@ -24,6 +25,7 @@ public class FReportInventory extends MyFrame {
     }
     private FReportInventory() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Github Project\\BookStoreManagement\\images\\bookstore.png"));
     }
 
     /**

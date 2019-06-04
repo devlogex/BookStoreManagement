@@ -6,6 +6,7 @@
 package view;
 
 import controller.BookController;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
@@ -26,6 +27,7 @@ public class FBook extends MyFrame {
     }
     private FBook() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Github Project\\BookStoreManagement\\images\\bookstore.png"));
     }
     
     @Override
